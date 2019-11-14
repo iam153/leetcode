@@ -1,0 +1,40 @@
+照着官方题解写的，第一次写二分。做了几道，感觉与优化有关的问题都是用哈希或者游标。以后要有这种意识
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int m = nums1.size();
+        int n = nums2.size();
+        if(m>n)
+            return findMedianSortedArrays(nums2,nums1);
+        int imin = 0;
+        int imax = m,half = (m+n+1)/2;
+        while(imin<=imax){
+            int i = (imin+imax)/2;
+            int j = half-i;
+            if(i<imax&&nums1[i]<nums2[j-1])
+                imin = i+1;
+            else if(i>imin&&nums1[i-1]>nums2[j])
+                imax = i-1;
+            else{
+                int lmax=0;
+                if(i==0)
+                    lmax = nums2[j-1];
+                else if(j==0)
+                    lmax = nums1[i-1];
+                else
+                    lmax = max(nums1[i-1],nums2[j-1]);
+                if((m+n)%2==1)
+                    return lmax;
+                int rmin=0;
+                if(i==m)
+                    rmin = nums2[j];
+                else if(j==n)
+                    rmin = nums1[i];
+                else
+                    rmin = min(nums1[i],nums2[j]);
+                return (lmax+rmin)/2.0;
+            }
+        }
+        return 0.0;
+    }
+};
