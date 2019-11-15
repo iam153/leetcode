@@ -33,3 +33,45 @@ int main() {
 		cout << ans << endl;
 	}
 }
+马拉车算法，中心思想就是利用已经计算得出的长串的“覆盖”效果去取消重复计算，居然可以直接降一个指数级。
+#include<iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+int main() {
+	while (1) {
+		string tmp,s;
+		cin >> tmp;
+		int len = tmp.length();
+		for (int i = 0; i < len; i++) {
+			s = s + "#";
+			s = s + tmp[i];
+		}
+		s = s + '#';
+		len = s.length();
+
+		int maxpos = 0, maxr = 0;
+		int maxright = 0, mr_pos = 0;
+		int *r = new int[len];
+		memset(r, 0, sizeof(r));
+		for (int i = 0; i < len; i++) {
+			if (i < maxright) {
+				r[i] = min(r[2 * mr_pos - i], maxright - i);
+			}
+			else
+				r[i] = 1;
+
+			while (i - r[i] >= 0 && i + r[i] < len&&s[i - r[i]] == s[i + r[i]])
+				r[i]++;
+			if (i + r[i] -1 > maxright) {
+				maxright = i + r[i] - 1;
+				mr_pos = i;
+			}
+			if (r[i] > maxr) {
+				maxr = r[i];
+				maxpos = i;
+			}
+		}
+		cout << tmp.substr((maxpos - maxr + 1) / 2, maxr - 1) << endl;
+	}
+}
