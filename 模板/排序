@@ -1,0 +1,25 @@
+内部：
+插入、希尔  
+选择、堆  
+冒泡、快速  
+  
+外部：  
+归并、计数、基数、桶  
+  
+  
+冒泡：
+```cpp
+
+void bubbleSort(int* ar,int n) {
+	for (int i = 0; i < n; i++) {
+		for (int j = 1; j < n-i; j++)
+			if (ar[j] < ar[j - 1]) {
+				ex(ar, j, j - 1);
+			}
+	}
+	cout << "冒泡:";
+	for (int i = 0; i < n; i++)
+		cout << " " << ar[i];
+	cout << endl;
+}
+```
