@@ -6,10 +6,10 @@
 01背包，无优化
 ```cpp
 for(int i = 1; i <= m; i++)
-		for (int j = 0; j <= n; j++) {
-			f[i][j] = f[i - 1][j];
-			if(j >= w[i])
-				f[i][j] = max(f[i - 1][j], v[i] + f[i - 1][j - w[i]]);
-		}
+	for (int j = 0; j <= n; j++) {
+		f[i][j] = f[i - 1][j];
+		if(j >= w[i])
+			f[i][j] = max(f[i - 1][j], v[i] + f[i - 1][j - w[i]]);
+	}
 cout << f[m][n];
 ```
