@@ -3,6 +3,21 @@
 
 以下问题中m为可选物品数量，n为总可用钱数，f[i][j]表示用j块钱在前i件物品中最多可以选到多少钱的物品。w[i]为i号物品的费用（体积），v[i]为i号物品的价值
 
+打表调试代码  
+
+```cpp
+cout << " ";
+	for (int i = 0; i <= m; i++)
+		printf("%5d", i);
+	cout << endl;
+	for (int i = 0; i <= n; i++) {
+		cout << p[i]; 
+		for (int j = 0; j <= m; j++) {
+			printf("%5d", f[i][j]);
+		}; 
+		cout << endl << endl;
+	}
+```
 
   
 01背包，无优化
