@@ -6,8 +6,24 @@
 
 01背包  
 01背包一维优化  
-有依赖的背包问题(洛谷p1064) ，注意lambda表达式的使用
+有依赖的背包问题(洛谷p1064) ，注意lambda表达式的使用  
+最长不下降子序列  
 
+
+最长不下降子序列问题(LIS)  
+```cpp
+int ans = INT_MIN;
+for (int i = 1; i < ind; i++) {
+	f[i] = 1;
+	for (int j = 1; j < i; j++) {
+		if (ar[i] >= ar[j] && (f[j] + 1 > f[i])) {
+			f[i] = f[j] + 1;
+		}
+	}
+ans = max(ans, f[i]);
+}
+
+```
 
 打表调试代码  
 
