@@ -6,6 +6,7 @@
 
 01背包  
 01背包一维优化  
+完全背包  
 有依赖的背包问题(洛谷p1064) ，注意lambda表达式的使用  
 最长不下降子序列  
 
@@ -57,9 +58,15 @@ cout << f[m][n];
 这里注意内层循环的倒序就可以。可以优化的原因就是每一行的状态只与上一行的本格和之前某格(f[i - 1][j - w[i]])有关。因此可以优化空间
 ```cpp
 for(int i = 1; i <= m; i++)
-		for (int j = n; j >= 0; j--) {
-			if(j >= w[i])
-				f[j] = max(f[j], v[i] + f[j - w[i]]);
+		for (int j = n; j >= w[i]; j--) {
+			f[j] = max(f[j], v[i] + f[j - w[i]]);
 		}
 	cout << f[n];
+```
+
+完全背包
+```cpp
+for (int i = 0; i < m; i++)
+		for (int j = p[i]; j <= n; j++)
+			dp[i][j] = max(dp[i - 1][j], dp[i][j - p[i]] + v[i]);
 ```
